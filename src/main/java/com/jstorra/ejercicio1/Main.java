@@ -1,4 +1,4 @@
-package com.jstorra;
+package com.jstorra.ejercicio1;
 
 import java.util.Scanner;
 

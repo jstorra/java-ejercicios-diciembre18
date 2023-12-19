@@ -1,30 +1,30 @@
-package com.jstorra;
+package com.jstorra.ejercicio1;
 
-public class PartidoLiga extends Partido{
-    private int jornada;
+public class PartidoPlayOff extends Partido{
+    private String ronda;
 
-    public PartidoLiga(String equipoLocal, String equipoVisitante, String fechaPartido, int jornada) {
+    public PartidoPlayOff(String equipoLocal, String equipoVisitante, String fechaPartido, String ronda) {
         super(equipoLocal, equipoVisitante, fechaPartido);
-        this.jornada = jornada;
+        this.ronda = ronda;
     }
 
-    public int getJornada() {
-        return jornada;
+    public String getRonda() {
+        return ronda;
     }
 
-    public void setJornada(int jornada) {
-        this.jornada = jornada;
+    public void setRonda(String ronda) {
+        this.ronda = ronda;
     }
-    
+
     @Override
-    String mostrarPartido() {
+    public String mostrarPartido() {
         return "\nPartido{" +
                 "equipoLocal=" + super.getEquipoLocal() + 
                 ", equipoVisitante=" + super.getEquipoVisitante() + 
                 ", cestasLocal=" + super.getCestasLocal() + 
                 ", cestasVisitante=" + super.getCestasVisitante() + 
                 ", finalizado=" + super.isFinalizado() + 
-                ", jornada=" + this.jornada + 
+                ", ronda=" + this.ronda + 
                 ", fechaPartido=" + super.getFechaPartido() + '}';
     }
 
@@ -34,16 +34,18 @@ public class PartidoLiga extends Partido{
             return "Equipo local: " + super.getEquipoLocal();
         }else if(super.getCestasLocal() < super.getCestasVisitante() && super.isFinalizado()){
             return "Equipo visitante: " + super.getEquipoVisitante();
-        }else if (super.getCestasLocal() == super.getCestasVisitante() && super.isFinalizado()) {
-            return "\nEmpate";
-        } else{
+        }else{
             return "\nPartido no finalizado";
         }
     }
 
     @Override
     public boolean finalizarPartido() {
-        super.setFinalizado(true);
-        return true;
+        if (super.getCestasLocal() == super.getCestasVisitante()) {
+            return false;
+        }else{
+            super.setFinalizado(true);
+            return true;
+        }
     }
 }
