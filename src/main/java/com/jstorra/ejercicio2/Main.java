@@ -20,20 +20,23 @@ public class Main {
         Tienda miTienda = new Tienda();
 
         Scanner scanner = new Scanner(System.in);
-        int id = 0;
+        int idP = 0;
+        int idC = 0;
+        
         try {
             while (true) {
                 System.out.println("""
                                                    
-                           1. Registrar pelicula
-                           2. Registrar Cliente
-                           3. Alquilar pelicula
-                           4. Cambiar precio a una pelicula
-                           5. Eliminar pelicula
-                           6. Salir
+                        1. Registrar pelicula
+                        2. Registrar Cliente
+                        3. Alquilar pelicula
+                        4. Cambiar precio a una pelicula
+                        5. Eliminar pelicula
+                        6. Salir
                         """);
                 System.out.print("Opcion: ");
                 int opcion = scanner.nextInt();
+                scanner.nextLine();
 
                 if (opcion == 6) {
                     System.out.println("\nSaliendo...");
@@ -53,9 +56,18 @@ public class Main {
                             """);
                     System.out.print("Opcion: ");
                     int especial = scanner.nextInt();
-
-                    System.out.print("Ingresa el precio de alquiler: ");
-                    double precioAlquiler = scanner.nextDouble();
+                    
+                    double precioAlquiler;
+                    while(true) {
+                        try {
+                            scanner.nextLine();
+                            System.out.print("Ingresa el precio de alquiler (ex: 1,99): ");
+                            precioAlquiler = scanner.nextDouble();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("\nERROR: El valor ingresado no es válido, asegurate de seguir el formato.\n");
+                        }
+                    }
 
                     double descuento = 0;
                     boolean isEspecial = false;
@@ -68,8 +80,9 @@ public class Main {
                         System.out.println("\nERROR: La opción ingresada no es válida.");
                     }
 
-                    Pelicula miPelicula = new Pelicula(id, titulo, director, genero, isEspecial, precioAlquiler, descuento);
+                    Pelicula miPelicula = new Pelicula(idP++, titulo, director, genero, isEspecial, precioAlquiler, descuento);
                     miTienda.registrarPelicula(miPelicula);
+                    System.out.println(miPelicula.mostrarInformacion());
 
                 } else if (opcion == 2) {
                     System.out.println("--------------- REGISTRAR CLIENTE ---------------");
@@ -80,7 +93,7 @@ public class Main {
                     System.out.print("Ingresa el numero de telefono del cliente: ");
                     String numeroTelefono = scanner.nextLine();
 
-                    Cliente miCliente = new Cliente(nombre, correo, numeroTelefono);
+                    Cliente miCliente = new Cliente(idC++, nombre, correo, numeroTelefono);
                     miTienda.registrarCliente(miCliente);
 
                 } else if (opcion == 3) {
