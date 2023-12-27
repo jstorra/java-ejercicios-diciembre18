@@ -75,9 +75,9 @@ public class Pelicula {
     public String mostrarInformacion() {
         return "Pelicula{" +
                 "id=" + id +
-                ", titulo='" + titulo +
-                ", director='" + director +
-                ", genero='" + genero +
+                ", titulo='" + titulo + "'" +
+                ", director='" + director + "'" +
+                ", genero='" + genero + "'" +
                 ", isEspecial=" + isEspecial +
                 ", precioAlquiler=" + precioAlquiler +
                 ", descuento=" + descuento +

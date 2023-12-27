@@ -1,14 +1,24 @@
 package com.jstorra.ejercicio2;
 
 public class Cliente {
+    private int id;
     private String nombre, correo, numeroCelular;
 
-    public Cliente(String nombre, String correo, String numeroCelular) {
+    public Cliente(int id, String nombre, String correo, String numeroCelular) {
+        this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.numeroCelular = numeroCelular;
     }
+    
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }    
+    
     public String getNombre() {
         return nombre;
     }
